@@ -77,7 +77,13 @@
             </div>
         </div>
         <div class="container2">
-            <textarea name=" " id="textarea" cols="90" rows="10" placeholder="Enter your raw text here.... "></textarea>
+            <form action="{{ url_for('summarize')}}" method="POST" enctype = "multipart/form-data">
+            <textarea name=" " id="textarea" cols="140" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
+            <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
+                <!-- <a href = "{{ url_for('summarize')}}">Summarize Now</a> -->
+                <input type="submit"  value="Summarize">
+            </div>
+            </form>
         </div>
        
         <div class="container4" id="filecontainer">
@@ -87,13 +93,32 @@
             <h3>
                 in .docx , .pdf , .vtt , .txt
             </h3>
-            <label for="file-upload" class="custom-file-upload">
-                <i class="fa fa-cloud-upload"></i> Custom Upload
-            </label>
-            <input id="file-upload" type="file"/>
-            
-          
+            <form action="{{ url_for('summarize')}}" method="POST" enctype = "multipart/form-data">
+                <div class="file-upload">
+                  <input type="file" name="fileUpload" id="fileUpload" required>
+                  <label for="fileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label>
+                  <p id="selectedFileName">file name</p>
+
+                </div>
+                <!-- <div class="drag-drop">
+                  <p>Drag and drop files here or click to select files.</p>
+                  <input type="file" name="fileUpload" id="fileUpload" multiple>
+                  <p id="droppedFiles"></p>
+                </div> -->                        
+            <div class="main-blue-button-hover">
+                <!-- <a href="{{ url_for('summarize')}}">Summarize Now</a> -->
+                <input type="submit"  value="Summarize">
+            </div>
+        </form>
         </div>
+        <div id="div-results" style="color: red;">
+            <!-- <p class="Detail-f">Number of sentences in original text : {{lines_original}}</p> -->
+        	<!-- <p class="Detail-f">Number of sentences in summarized version : {{lines_summary}}</p> -->
+			<!-- <p class="Detail-f">File name: {{file_name}}</p> -->
+    
+        	<!-- <h3 style="color: black; padding-left: 60px;">Summary:</h3> -->
+        	<p class="result-s">{{ text_summary }}</p>
+    	</div>
         </div>
 
         <!-- Scripts -->
@@ -123,7 +148,7 @@
                 }
             });
 
-            // JS for SUmmarize your .tct/.vtt...
+            // JS for [SUmmarize your .txt/.vtt...]
             const typedTextSpan = document.querySelector(".typed-text");
             const cursorSpan = document.querySelector(".cursor1");
 
@@ -171,15 +196,68 @@
 <script>
     var b = document.getElementById("filecontainer");
     var a = document.getElementById("textarea");
+    var x = document.getElementById("textarea_btn");
+
     function showfile()
     {
-        b.style.display= "block"
-        a.style.display="none"
+        b.style.display= "block";
+        a.style.display="none";
+        x.style.display="none";
     }
     function showtext()
     {
         a.style.display= "block"
         b.style.display="none"
+        x.style.display="block";
 
     }
 </script>
+
+<script>
+    const fileUpload = document.getElementById('fileUpload');
+    const selectedFileName = document.getElementById('selectedFileName');
+    const dropzone = document.querySelector('.drag-drop');
+    const droppedFiles = document.getElementById('droppedFiles');
+  
+    // Prevent default drag behaviors
+    ['dragover', 'dragenter', 'dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }, false);
+    });
+  
+    // Highlight drop zone when item is dragged over
+    ['dragover', 'dragenter'].forEach(eventName => {
+      dropzone.addEventListener(eventName, () => {
+        dropzone.classList.add('highlight');
+      }, false);
+    });
+  
+    // Remove highlight when item is dragged away
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, () => {
+        dropzone.classList.remove('highlight');
+      }, false);
+    });
+  
+    // Handle selected file
+    fileUpload.addEventListener('change', () => {
+      selectedFileName.textContent = fileUpload.files[0].name;
+    });
+  
+    // Handle dropped files
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();       
+      e.stopPropagation();
+  
+      const files = e.dataTransfer.files;
+      droppedFiles.textContent = '';
+  
+      for (const file of files) {
+        const p = document.createElement('p');
+        p.textContent = file.name;
+        droppedFiles.appendChild(p);
+      }
+    });
+  </script>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	 <!-- Bootstrap core CSS -->
+     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+     <link rel="shortcut icon" href="{{ url_for('static', filename='./assets/images/logo2.png') }}" type="image/x-icon">
+         <!-- Additional CSS Files -->
+         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-onix-digital.css') }}">
+         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
+         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
+       
+
+</head>
+<body>
+
+	<!-- Header Area wrapper Starts -->
+    <header id="header-wrap">
+		<!-- Navbar Start -->
+		<nav class="navbar navbar-expand-lg bg-inverse fixed-top scrolling-navbar" style="background-color: #092756;">
+		  <div id="nav-container" class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<a href="#" class="navbar-brand"><img id="nav-logo" src="{{ url_for('static', filename='logohack.png') }}" alt=""></a>       
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			  <i class="lni-menu"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+			  <ul class="navbar-nav mr-auto w-100 justify-content-end">
+				<li class="nav-item active">
+				  <a class="nav-link" href="http://127.0.0.1:5000/">
+					Home
+				  </a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">
+					Summarized text
+				  </a>
+				</li>
+				<!-- <li class="nav-item">
+				  <a class="nav-link" href="#prizes">
+			  Features
+				  </a>
+				</li>
+			
+				<li class="nav-item">
+				  <a class="nav-link" href="#domains">
+				   Our Team
+				  </a>
+				</li>
+						  
+				
+				<li class="nav-item">
+				  <a class="nav-link" href="#faq">
+					CONTACT
+				  </a>
+				</li> -->
+				
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+		<!-- Navbar End -->
+  
+		<!-- Hero Area Start -->
+		<!-- <div id="hero-area" class="hero-area-bg">
+		  <div class="overlay"></div>
+		  <div class="container">
+			<div class="row justify-content-center">
+			  <div class="col-lg-9 col-sm-12">
+				<div class="contents text-center">
+		  
+					<img id="hero-image" style="margin-left: auto; margin-right: auto;" src="assets/img//background/logohack.png" width="200px" height="200px" alt="">
+					<div class="banner-btn">
+					  <a href="#prizes" id="hero-register" class="btn btn-common">Summarize the text</a>
+					</div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div> -->
+  
+	  </header>
+
+	<div class="ml-container">
+
+    	<div id="div-results" style="color: red;">
+            <!-- <p class="Detail-f">Number of sentences in original text : {{lines_original}}</p> -->
+        	<p class="Detail-f">Number of sentences in summarized version : {{lines_summary}}</p>
+			<p class="Detail-f">File name: {{file_name}}</p>
+    
+        	<h3 style="color: black; padding-left: 60px;">Summary:</h3>
+        	<p class="result-s">{{ text_summary }}</p>
+    	</div>		
+	</div>
+
+</body>
+</html>

@@ -105,3 +105,48 @@ input[type="file"] {
   background-color: black;
   color: white;
 }
+
+
+/* *********Upload file****************** */
+.file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+.file-upload input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-upload label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.drag-drop {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  background-color: rgb(233, 233, 233);
+  height: 150px;
+}
+
+.drag-drop p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.drag-drop input[type="file"] {
+  display: none;
+}
+
+.drag-drop.highlight {
+  background-color: #f0f0f0;
+}
