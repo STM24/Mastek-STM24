@@ -8,6 +8,9 @@ import PyPDF2
 from transformers import pipeline
 import docx
 import webvtt
+import csv
+import pandas as pd
+
 
 app = Flask(__name__)
 
@@ -63,12 +66,6 @@ def attendees_result():
         hours = aaa.hour
 
         secs = aaa.second
-        print("******************************************************************   ")
-        print("Hours: ", hours)
-        print("Minutes: ", minutes)
-        print("Seconds: ", secs)
-
-        print(hours,"H:",minutes,"M:",secs,"S")
 
         f = open(transcript.filename, "r")
         string = f.read()
@@ -105,13 +102,9 @@ def attendees_result():
                 namee.append(names)
                 
         meet_attendees = set(namee)
-        meet_attendees.remove("")
-        print("##########################################################")
-        print(meet_attendees)
-        
+        meet_attendees.remove("")     
 
         S = ', '.join(meet_attendees)
-        print(str(S))
         file = open("Active_Attendees.txt","w")
 
         file.write("Total Active attendees: ")
@@ -121,6 +114,28 @@ def attendees_result():
 
         file.write(str(S))
         file.close()
+
+        # *****Download file*****
+        column_name = "Active_Attendees"
+        with open('example.csv', mode='a', newline='') as file:
+
+            # Create a writer object
+            writer = csv.writer(file)
+
+            # Write the data to the CSV file
+            writer.writerow([column_name])
+
+        
+        df = pd.read_csv('example.csv')
+        # Create a new list of values to insert into the column
+        new_column_data = list(meet_attendees)
+
+        # Append the new data to the desired column
+        df[column_name] = df[column_name].append(pd.Series(new_column_data))
+
+        # Write the updated DataFrame to a new CSV file
+        df.to_csv('updated_example.csv', index=False)
+        # **********************
 
     return render_template('attendees_result.html',
                             hour = hours,
@@ -136,7 +151,6 @@ def attendees_result():
 def summarize_text():
     if request.method == 'POST':
         text_summary = request.form['text_summary']
-        print("Text -> ",text_summary)
 
         Summary = generate_summary(text_summary)
 
