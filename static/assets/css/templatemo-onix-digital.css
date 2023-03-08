@@ -1665,9 +1665,8 @@ contact
   position: absolute;
   z-index: 1;
   width: 459px;
-  height: 702px;
+  /* height: 702px; */
   right: 0;
-  bottom: -400px;
 }
 
 .contact-left-dec img {

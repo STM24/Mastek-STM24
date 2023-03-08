@@ -34,7 +34,7 @@
                 <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{{ url_for('home') }}" class="logo">
                     <img src="{{ url_for('static', filename='assets/images/logo2.png') }}">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -60,7 +60,7 @@
         <!-- ***** Header Area End ***** -->
         <div class="container">
         <div class="container1">
-            <p>Find attendee's<span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
+            <p>Find attendee's <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
 
             <p class="s-para">Upload the transcript file of your meet and get the active attendance of your attendees, name of all the active attendees and the duration of the meet</p>
@@ -75,65 +75,36 @@
             <h3>
                 in .docx , .pdf , .vtt , .txt
             </h3>
-            <form action="{{ url_for('attendees_page')}}" method="POST" enctype = "multipart/form-data">
+            <form action="{{ url_for('attendees_result')}}" method="POST" enctype = "multipart/form-data">
                 <label for="file-upload" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> Custom Upload
                 </label>
-                <input id="file-upload" type="file" name="myfile" accept=".vtt" required >
+                <input id="file-upload" type="file" name="myfile" accept=".vtt" required />
                 <p id="selectedfile"></p>
                 <div style="border-radius: 0;" class="main-blue-button-hover">
                     <input type="submit" onclick="showtext()" />
-                    <!-- <input type="submit" value="Gett" onclick="showtext()"> -->
                 </div>
-            </form>
-          
+            </form>          
         </div>
-        <div class="container5" id="resultbox">
-            <h2>Your results are ready !!</h2>
-            <h3>Your meeting's .....</h3>
 
-
-            <div class="subres">
-                <div class="firstres">
-
-                    <h4>Active number of attendees </h4>
-                    <span class="spanclass">{{total_att}}</span>
-                </div>
-                <div class="secres">
-                    <h4>Duration of your meet 
-               
-                    </h4>
-                    <span class="attendeeres">{{hour}} hours </span>
-                    <br>
-                    <span class="attendeeres">{{minutes}} minutes </span>
-                    <br>
-                    <span class="attendeeres">{{sec}} seconds </span>  
-                </div>
-                <div class="thiedres">
-                    <h4>Name of attendees in the meet
-               
-                    </h4>
-                    <span class="attendeeres">{{meet_attendees_name}}</span>
-                    <br>
-                    <!-- <span class="attendeeres">Adil</span>
-                    <br>
-
-                    <span class="attendeeres">Suhbham</span>
-                    <br>
-
-
-                    <span class="attendeeres">Harsh</span> -->
-
-
-                  
-                </div>
-            </div>
-        
-        </div>
+        <!-- <div class="container4" id="filecontainer">
+            <div class="drag-area">
+                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <header>Drag & Drop to Upload File</header>
+                <span>OR</span>
+                <button onclick="showFile()">Browse File</button>
+                <form action="{{ url_for('attendees_page')}}" method="POST" enctype = "multipart/form-data">
+                    <input type="file" id="myfile" name="myfile" accept=".vtt" hidden>
+                    <div style="border-radius: 0;" class="main-blue-button-hover btncontainer">
+                        <input class="btncontainer" type="submit" onclick="showtext()" value="Submit">
+                    </div>
+                </form>
+              </div>            
+        </div> -->
         </div>
         
 
-
+        
         <!-- Scripts -->
         <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -165,7 +136,7 @@
             const typedTextSpan = document.querySelector(".typed-text");
             const cursorSpan = document.querySelector(".cursor1");
 
-            const textArray = [" count", " active attendance", " name in the meet"];
+            const textArray = [" count", "active attendance", "name in the meet"];
             const typingDelay = 150;
             const erasingDelay = 100;
             const newTextDelay = 1000; // Delay between current and next text
@@ -220,9 +191,10 @@
 
     function showtext()
     {
-        a.style.display= "block"
-       
-
+        const input_file = document.getElementById("file-upload").value;
+        if(input_file == ""){
+            alert("Please select a file")
+        }
     }
 </script>
 
@@ -236,4 +208,4 @@
         input.value = ""; // clear the input field
       }
     });
-  </script>
+</script>
