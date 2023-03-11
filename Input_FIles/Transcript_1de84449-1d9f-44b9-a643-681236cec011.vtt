@@ -1,0 +1,214 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:00.390
+<v Bhavin Shah>Yes.</v>
+
+00:00:02.040 --> 00:00:00.730
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes Sir. The screen is visible now. We have started the transcription.</v>
+
+00:00:01.350 --> 00:00:01.830
+<v Bhavin Shah>OK.</v>
+
+00:00:01.960 --> 00:00:03.500
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>OK. So that will start.</v>
+
+00:00:07.670 --> 00:00:08.530
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes, Sir.</v>
+
+00:00:12.870 --> 00:00:13.370
+<v Bhavin Shah>Uh-huh.</v>
+
+00:00:09.550 --> 00:00:39.340
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So the topic for a presentation is summarized teams meeting and with this problem statement we have been assigned from the team master. We been proceeding with the solution, so we have a team members which includes might me myself as PRUTHVIRAJ Patil along with me I have Adil KHATRI, HARSH CHOTALIYA and SHUBHAM KANOJIYA. So as moving on to the introduction of this very interesting topic which includes the party like we have seen that we have been participating in dozens of meeting in day-to-day life to attend various to attend various topics have been assigned to.</v>
+
+00:00:44.520 --> 00:00:44.880
+<v Bhavin Shah>Umm.</v>
+
+00:00:46.670 --> 00:00:47.070
+<v Bhavin Shah>Right.</v>
+
+00:00:56.640 --> 00:00:57.120
+<v Bhavin Shah>OK.</v>
+
+00:00:39.650 --> 00:01:08.940
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>As an participants or as an host, we attend all these meetings like this. Meeting itself is an example of it, and apart from this the major solution we major challenge we get is that to get the summary of that or the conclusion of that particular meeting. So the major meeting giants like Google meet or Microsoft Teams assigns as the transcript of it but nobody gives us the summary. So the interesting problem statement we have been assigned from mastic is to summarize the teams meeting.</v>
+
+00:01:09.590 --> 00:01:30.860
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>What they summarize the Google meets meeting, so All in all, we have been assigned to find out the total number of attendees in the meeting, the duration of the meeting just with the help of the transcript we have generated from the meeting or apart from this. Additionally, we have added some features which include speech to text and some of the actions which have been specifically called out in the meeting.</v>
+
+00:01:32.370 --> 00:01:57.530
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Exactly PRUTHVIRAJ and based on the problem statement. All in all, we have successfully achieved this features and our mayor and our four major important services which we offered are duration of the meet. We were able to generate the duration of the meat and find total active attendees and live speech to text that is text to speech, to text transcription and text summarization which is the main important part of your approach.</v>
+
+00:02:02.010 --> 00:02:30.480
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes, I'm moving on with the flow of you hang on with the flow of summary from the given transcript, the we are assuming that we are, we are getting the transcript generated from the Microsoft Teams. And then first, we are preprocessing the preprocessing, the textual such as removing the noise or feature extraction from that. And we have we extract all the all the required.</v>
+
+00:02:30.580 --> 00:03:00.820
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Make such as the participant name total active. From that we can count the total number of attendees as well as the duration of meat. Then we have we are using algorithms and we have come up with a model. We have view sequence to sequence model. This is the type of model it when machine learning that is used for task such as translation of text or text summarization. And this model consists of mainly 2 components and encoder and decoder.</v>
+
+00:03:01.370 --> 00:03:24.400
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>The encoder takes the sequence of input data, such as a sentence in or any in one language, and then it converts converts the text into into fixed length, such as context vectors, and. The decoder is then used to correct to convert those context vectors and generate a sequence of output data, so.</v>
+
+00:03:25.910 --> 00:03:52.670
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Ohh, this this model is COMP completely works on uh encoder and decoder. The sequential sequence model have we have also trained this model using a data set in the form of input and output pairs where the input is also the sequence of tokens. Tokens in the sense it is a sequence of sentence and then the model gives the output by decoding those sentence and giving us the new reframe sentence.</v>
+
+00:03:53.850 --> 00:04:13.260
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>And in the form of summary and this this basically comes in the summarization process and after this the sentence filtering happens and then all the all the sentences are reframed and according to the understanding of the model and then we get the summarization file.</v>
+
+00:04:16.060 --> 00:04:16.850
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So.</v>
+
+00:04:18.020 --> 00:04:49.150
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So this piece to transcription takes place as in the flow chart given below. So we have the voice as the voice which I'm speaking with the raw voice given as an input, which is in the computer term is called as a token as a raw token. Then it is extracted, it's features are extracted using that sequence to sequence model. Some noises are also removed and it's made clean to computer to evaluate it completely. Then the caustic model trains. They trained acoustic improvised model will generate the transcript text file.</v>
+
+00:04:49.310 --> 00:04:51.260
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>And then the summary of it will be generated.</v>
+
+00:04:51.980 --> 00:05:00.690
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So yes, this was all about our project and presentation and we have been successfully carried out this solution of all the problem statement assigned to us. Thank.</v>
+
+00:05:02.640 --> 00:05:03.080
+<v Bhavin Shah>OK.</v>
+
+00:05:02.870 --> 00:05:06.020
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Now I will proceed with the implementation of the project.</v>
+
+00:05:13.250 --> 00:05:33.020
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes. So this is the user interface. The user will get for our SEM team 24 for summarizing the meeting. Now we hover them to the services of our project. We'll get that we can explore to the various services, which includes fine total active attendance, know the duration of the meeting. So I want you to text and live speech to text just with the help of the card. The user will be able to access it.</v>
+
+00:05:34.490 --> 00:05:36.750
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>If you move on to the summarize now.</v>
+
+00:05:38.210 --> 00:05:43.780
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>You'll be able to explore that. We can give the input in the form of raw text and upload as file.</v>
+
+00:05:44.430 --> 00:05:46.450
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>For the sake of convenience, we'll upload the file.</v>
+
+00:05:47.250 --> 00:05:48.480
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Now this is the TS file.</v>
+
+00:05:50.040 --> 00:05:53.820
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Which will be giving, giving giving to this interface and.</v>
+
+00:05:55.000 --> 00:05:55.920
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>DS dot TXT.</v>
+
+00:05:57.640 --> 00:05:59.470
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Now we can see the TXT file here.</v>
+
+00:06:01.650 --> 00:06:25.390
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes, and this is the translate file actually which is the live conversation between all the participants were present in the meeting like you can see some names have been popping up here as SHUBHAM, Adil and HARSH who are in the meeting and discussing some of the topics. Yes. And this transcript is generated by the Microsoft Teams itself. So we are using this as an input to our model.</v>
+
+00:06:26.480 --> 00:06:41.210
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>And you do it. Yeah. Yeah. So you can see the summary being generated in a concise manner and it will. It's a it's a summary which is making sense to the users because this is the only or the topic which have been discussed by the three users of the meeting.</v>
+
+00:06:43.500 --> 00:06:46.430
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>You can if you want. You can read the summary as well.</v>
+
+00:06:51.020 --> 00:06:51.670
+<v Bhavin Shah>OK.</v>
+
+00:06:53.870 --> 00:06:55.080
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Is there any input from your end?</v>
+
+00:06:56.000 --> 00:07:02.570
+<v Bhavin Shah>Yes, quite a lot of inputs from my end. If you can stop your recording right now so that I can give you my inputs.</v>
+
+00:07:04.620 --> 00:07:10.360
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yeah, we'll complete giving you the presentation of all the features, then probably you can give us some.</v>
+
+00:07:12.210 --> 00:07:12.650
+<v Bhavin Shah>OK.</v>
+
+00:07:14.570 --> 00:07:24.250
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Are you said if we stop the recording, I think the transcription will also stop. So if we show you all the functionality of functionality after it, if you stop then.</v>
+
+00:07:23.690 --> 00:07:27.080
+<v Bhavin Shah>OK, finish, finish your function. I thought your demo is complete good.</v>
+
+00:07:27.630 --> 00:07:28.580
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes, OK, Sir.</v>
+
+00:07:28.910 --> 00:07:58.860
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So yeah, uh, yet there was a voice. Which and then we have the feature for getting the duration of the meat and the total active attendees here also we can upload the transcript it it will accept only we did file as a as Microsoft team gives us transcript in the form of VTT and the extension for the transcript is BVD file. So we are accepting only VHD file if you select any other files such as PDF or it will show error that you have to select.</v>
+
+00:07:59.000 --> 00:07:59.940
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>We did file only.</v>
+
+00:08:15.300 --> 00:08:15.560
+<v Bhavin Shah>Umm.</v>
+
+00:08:02.590 --> 00:08:27.700
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Uh, yeah. So now we have open that video file and if you submit it will display the total number of active attendees, the duration of the meeting and the total number of active attendance. And now we are also the we are also we'll we'll also be implementing the downloadable feature so that the user can download the transcript, active attendees and the duration of the meeting.</v>
+
+00:08:29.000 --> 00:08:31.850
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Duration of the mate. Yes, Sir.</v>
+
+00:08:34.430 --> 00:08:34.860
+<v Bhavin Shah>OK.</v>
+
+00:08:37.040 --> 00:08:50.730
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Is there and for we we also have, uh, we we can the user can also use this as a AI can pass the node text and can also summarize so that we have provided this feature you user can input.</v>
+
+00:08:51.560 --> 00:08:59.430
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Any of the paragraph or your she won't show summarize and after that he can summarize. So we have given this.</v>
+
+00:09:01.200 --> 00:09:07.370
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>And till now we have uh developed this this much prototype and we are happy to take your inputs.</v>
+
+00:09:09.440 --> 00:09:15.290
+<v Bhavin Shah>So the last one I did not get. Can you please repeat what does that summarization of text which you showed?</v>
+
+00:09:16.750 --> 00:09:17.440
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>This one, Sir.</v>
+
+00:09:16.570 --> 00:09:21.490
+<v Bhavin Shah>You already we already saw summary. We already saw the attendance detail. What is this one?</v>
+
+00:09:23.510 --> 00:09:23.990
+<v Bhavin Shah>Yeah.</v>
+
+00:09:22.350 --> 00:09:30.840
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>This one. So this is the abstractive summary of the text given to us. You can search said if if someone is finding the yeah.</v>
+
+00:09:28.660 --> 00:09:33.930
+<v Bhavin Shah>But but but you showed, right? Right system automatically shows the abstractive comment.</v>
+
+00:09:48.780 --> 00:09:49.120
+<v Bhavin Shah>Ohh.</v>
+
+00:09:54.810 --> 00:09:55.270
+<v Bhavin Shah>Got it.</v>
+
+00:09:49.180 --> 00:09:57.610
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>It is the transcript and now we summarize. Then it will give you the summary ohh which will take input from the text area yes.</v>
+
+00:09:57.730 --> 00:09:58.080
+<v Bhavin Shah>Other.</v>
+
+00:10:08.370 --> 00:10:08.840
+<v Bhavin Shah>Umm.</v>
+
+00:10:00.020 --> 00:10:13.930
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>And after this summary then this file could be the summary could be used further to get the number of attendance in the mean duration of the meat and the number of participants in the meet. So All in all this summary would be an asset for the user which would be used further to get use the various features.</v>
+
+00:10:15.200 --> 00:10:15.530
+<v Bhavin Shah>What it?</v>
+
+00:10:17.000 --> 00:10:18.850
+<v Bhavin Shah>OK, fair enough. So.</v>
+
+00:10:16.960 --> 00:10:19.920
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>So this is the summary which is similar to that upload file feature.</v>
+
+00:10:20.830 --> 00:10:22.070
+<v Bhavin Shah>OK, got it. Got it. Got it.</v>
+
+00:10:24.300 --> 00:10:26.680
+<v COMP_TY_B_66_SHUBHAM_KANOJIYA>Yes, Sir. Now you're we are open for you inputs.</v>
+
+00:10:27.350 --> 00:10:30.300
+<v Bhavin Shah>OK, fading. I'm so I think couple of things from my end, first of all.</v>
+
+00:10:31.300 --> 00:10:35.100
+<v Bhavin Shah>See, this is good, but this is not impactful.</v>

@@ -1,6 +1,4 @@
-import nltk
-from flask import Flask, request, jsonify, render_template
-# from textsummarizer import *
+from flask import Flask, Response, request, jsonify, render_template
 from final_summary import *
 from Meeting_duration import *
 from PyPDF2 import PdfReader
@@ -10,7 +8,9 @@ import docx
 import webvtt
 import csv
 import pandas as pd
-
+import io
+import random
+import string
 
 app = Flask(__name__)
 
@@ -27,7 +27,7 @@ def summary_page():
 def attendees_page():
     return render_template('attendees_page.html')
 
-
+meet_attendee_list = []
 @app.route('/attendees_result',methods=['GET','POST'])
 def attendees_result():
     if request.method == 'POST':
@@ -102,39 +102,42 @@ def attendees_result():
                 namee.append(names)
                 
         meet_attendees = set(namee)
-        meet_attendees.remove("")     
+        meet_attendees.remove("")  
+
+        global meet_attendee_list
+        meet_attendee_list = list(meet_attendees)
 
         S = ', '.join(meet_attendees)
-        file = open("Active_Attendees.txt","w")
+        # file = open("Active_Attendees.txt","w")
 
-        file.write("Total Active attendees: ")
-        file.write(str(len(meet_attendees)))
+        # file.write("Total Active attendees: ")
+        # file.write(str(len(meet_attendees)))
 
-        file.write("\nTotal Active attendees Name: \n")
+        # file.write("\nTotal Active attendees Name: \n")
 
-        file.write(str(S))
-        file.close()
+        # file.write(str(S))
+        # file.close()
 
-        # *****Download file*****
-        column_name = "Active_Attendees"
-        with open('example.csv', mode='a', newline='') as file:
+        # ***************************Download file********************
+        # column_name = "Active_Attendees"
+        # with open('example.csv', mode='a', newline='') as file:
 
-            # Create a writer object
-            writer = csv.writer(file)
+        #     # Create a writer object
+        #     writer = csv.writer(file)
 
-            # Write the data to the CSV file
-            writer.writerow([column_name])
+        #     # Write the data to the CSV file
+        #     writer.writerow([column_name])
 
         
-        df = pd.read_csv('example.csv')
-        # Create a new list of values to insert into the column
-        new_column_data = list(meet_attendees)
+        # df = pd.read_csv('example.csv')
+        # # Create a new list of values to insert into the column
+        # new_column_data = list(meet_attendees)
 
-        # Append the new data to the desired column
-        df[column_name] = df[column_name].append(pd.Series(new_column_data))
+        # # Append the new data to the desired column
+        # df[column_name] = df[column_name].append(pd.Series(new_column_data))
 
-        # Write the updated DataFrame to a new CSV file
-        df.to_csv('updated_example.csv', index=False)
+        # # Write the updated DataFrame to a new CSV file
+        # df.to_csv('updated_example.csv', index=False)
         # **********************
 
     return render_template('attendees_result.html',
@@ -233,6 +236,58 @@ def summarize():
 
         # ******************END************************
 
+@app.route('/download_csv')
+def download_csv():
+    # Define the data to be included in the CSV file
+    # data = [['Name'],
+    #         ['COMP_TY_B_63_MOHAMMED_ADIL_KHATRI'],
+    #         ['COMP_TY_B_66_SHUBHAM_KANOJIYA'],
+    #         ['COMP_SY_B_60_HARSH_CHOTALIYA'],
+    #         ['Samantha']
+    #         ]
+    
+    insert_data = ["Active_attendees"]
+    insert_data.extend(meet_attendee_list)
+
+    insert_names= [[x] for x in insert_data]
+
+    # Create a buffer to write the CSV data to
+    output = io.StringIO()
+
+    # Use the csv module to write the data to the buffer
+    writer = csv.writer(output)
+    for row in insert_names:
+        writer.writerow(row)
+
+    # Set the appropriate response headers
+    response = Response(output.getvalue(), mimetype='text/csv')
+
+    # *******Generate random file name***
+    # Generate a sequence of 8 random characters (4 letters and 4 numbers)
+    random_chars = ''.join(random.choices(string.ascii_lowercase + string.digits, k=16))
+
+    # Insert an underscore after every 4 characters
+    result = '_'.join([random_chars[i:i+4] for i in range(0, len(random_chars), 4)])
+    file_name = "Attendance_" + result +".csv"
+ 
+    # ************************
+    response.headers.set("Content-Disposition", "attachment", filename=file_name)
+
+    return response
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, threaded=True)
     
+
+
+#     import random
+# import string
+
+# # Generate a sequence of 8 random characters (4 letters and 4 numbers)
+# random_chars = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+
+# # Insert an underscore after every 4 characters
+# result = '_'.join([random_chars[i:i+4] for i in range(0, len(random_chars), 4)])
+
+# # Print the result
+# print(result)
