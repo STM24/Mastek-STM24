@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/newcarousel.css') }}">
+
 <!--
 
 TemplateMo 565 Onix Digital
@@ -35,7 +37,7 @@ https://templatemo.com/tm-565-onix-digital
 <body>
 
   <!-- ***** Preloader Start ***** -->
-  <!-- <div id="js-preloader" class="js-preloader">
+  <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
       <span class="dot"></span>
       <div class="dots">
@@ -44,7 +46,7 @@ https://templatemo.com/tm-565-onix-digital
         <span></span>
       </div>
     </div>
-  </div> -->
+  </div>
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
@@ -54,7 +56,7 @@ https://templatemo.com/tm-565-onix-digital
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="{{ url_for('home')}}" class="logo">
               <img src="{{ url_for('static', filename='assets/images/logo2.png') }}">
             </a>
             <!-- ***** Logo End ***** -->
@@ -132,44 +134,37 @@ https://templatemo.com/tm-565-onix-digital
             </div>
             <div class="item">
               <h4>Summarize your Raw Text</h4>
-              <div class="icon"><img src="{{ url_for('static', filename='assets/images/assets/images/service-icon-02.png') }}" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-03.png') }}" alt=""></div>
+
               <p>Get to know more about the topic in details</p>
             </div>
             <div class="item">
               <h4>Find Total Active Attendees</h4>
-              <div class="icon"><img src="assets/images/service-icon-03.png" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-04.png') }}" alt=""></div>
+
               <p>Get to know more about the topic in details</p>
             </div>
             <div class="item">
               <h4>Know the Duration of the meet</h4>
-              <div class="icon"><img src="assets/images/service-icon-04.png" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-04.png') }}" alt=""></div>
+
               <p>Feel free to use this template for your business</p>
             </div>
             <div class="item">
               <h4>Audio to Text</h4>
-              <div class="icon"><img src="assets/images/service-icon-01.png" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-02.png') }}" alt=""></div>
+
               <p>Upload your file for Speech-To-Text transcription </p>
             </div>
             <div class="item">
               <h4>Live Speech-To-Text</h4>
-              <div class="icon"><img src="assets/images/service-icon-02.png" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-01.png') }}" alt=""></div>
+
               <p>Record your audio from our platform and get converted it into texts</p>
             </div>
-            <div class="item">
-              <h4>Best Content Ideas for your pages</h4>
-              <div class="icon"><img src="assets/images/service-icon-03.png" alt=""></div>
-              <p>Feel free to use this template for your business</p>
-            </div>
-            <div class="item">
-              <h4>Optimizing Speed for your web pages</h4>
-              <div class="icon"><img src="assets/images/service-icon-04.png" alt=""></div>
-              <p>Get to know more about the topic in details</p>
-            </div>
-            <div class="item">
-              <h4>Accessibility for mobile viewing</h4>
-              <div class="icon"><img src="assets/images/service-icon-01.png" alt=""></div>
-              <p>Get to know more about the topic in details</p>
-            </div>
+         
+         
+        
           </div>
         </div>
       </div>
@@ -249,7 +244,7 @@ https://templatemo.com/tm-565-onix-digital
               <div class="down-buttons">
                 <br>
                 <div class="main-blue-button-hover">
-                  <a href="{{ url_for('attendees_page')}}">Attendance lelo</a>
+                  <a href="{{ url_for('attendees_page')}}">Get Attendance Details </a>
                 </div>
               </div>
             </div>
@@ -284,58 +279,50 @@ https://templatemo.com/tm-565-onix-digital
         </div>
       </div>
     </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="owl-carousel owl-portfolio">
-            <div class="item">
-              <div class="thumb">
-                <img src="{{ url_for('static', filename='assets/images/domain/harsh.png') }}" alt="">
-                <div class="hover-effect">
-                  <div class="inner-content">
-                    <a rel="sponsored" href="https://templatemo.com/tm-564-plot-listing" target="_parent"><h4>Adil Khatri</h4></a>
-                    <!-- <span>The Team Leader</span> -->
-                  </div>
-                </div>
+    <section id="roles" >
+    
+      <div class="cont1">
+          <div class="card">
+              <div class="content">
+                  <div class="img"><img src="{{ url_for('static', filename='assets/images/adil.jpeg') }}" class="image"></div>
+                  <h3>Adil Khatri</h3>
+               
+
               </div>
-            </div>
-            <div class="item">
-              <div class="thumb">
-                <img src="{{ url_for('static', filename='assets/images/domain/harsh.png') }}" alt="">
-                <div class="hover-effect">
-                  <div class="inner-content">
-                    <a href="#"><h4>Pruthviraj Patil</h4></a>
-                    <!-- <span>SEO &amp; Marketing</span> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="thumb">
-                <img src="{{ url_for('static', filename='assets/images/domain/harsh.png') }}" alt="">
-                <div class="hover-effect">
-                  <div class="inner-content">
-                    <a rel="sponsored" href="https://templatemo.com/tm-562-space-dynamic" target="_parent"><h4>Shubham</h4></a>
-                    <!-- <span>Space Dynamic SEO</span> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="thumb">
-                <img src="{{ url_for('static', filename='assets/images/domain/harsh.png') }}" alt="">
-                <div class="hover-effect">
-                  <div class="inner-content">
-                    <a rel="sponsored" href="https://templatemo.com/tm-562-space-dynamic" target="_parent"><h4>Shubham</h4></a>
-                    <!-- <span>Space Dynamic SEO</span> -->
-                  </div>
-                </div>
-              </div>
-            </div>                      
           </div>
-        </div>
+
+          <div class="card">
+              <div class="content">
+                  <div class="img"><img src="{{ url_for('static', filename='assets/images/pp.jpg') }}" class="image"></div>
+                  <h3>Pruthviraj Patil</h3>
+              
+
+              </div>
+          </div>
+
+          <div class="card">
+              <div class="content">
+                  <div class="img"><img src="{{ url_for('static', filename='assets/images/pp.jpg') }}" class="image"></div>
+                  <h3>Harsh Chotaliya</h3>
+               
+
+              </div>
+          </div>
+
+          <div class="card">
+              <div class="content">
+                  <div class="img"><img src="{{ url_for('static', filename='assets/images/domain/shubham.jpg') }}" class="image"></div>
+                  <h3>Shubham Kanojiya </h3>
+               
+
+              </div>
+          </div>
+
+        
+
       </div>
-    </div>
+  </section>
+
   </div>
  
   <div id="pricing" class="pricing-tables">
@@ -528,8 +515,20 @@ https://templatemo.com/tm-565-onix-digital
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.4019316106883!2d72.8688922149007!3d19.04605798710513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7cf21727f6e19%3A0x473006136ad440dc!2sK.%20J.%20Somaiya%20Institute%20of%20Engineering%20and%20Information%20Technology!5e0!3m2!1sen!2sin!4v1677919590664!5m2!1sen!2sin" width="100%" height="360px" frameborder="0" style="border:0" allowfullscreen=""></iframe>
             </div>
             <div class="info">
-              <span><i class="fa fa-phone"></i> <a href="#">010-020-0340<br>090-080-0760</a></span>
-              <span><i class="fa fa-envelope"></i> <a href="#">info@company.com<br>mail@company.com</a></span>
+              <span>
+                <a href="">
+
+                  <i class="fa fa-phone"></i>
+                </a>
+                <a href="">
+
+                  <i class="fa fa-instagram"></i>
+                </a>     <a href="">
+
+                  <i class="fa fa-youtube"></i>
+                </a>
+              </span>
+            
             </div>
           </div>
         </div>
@@ -553,12 +552,12 @@ https://templatemo.com/tm-565-onix-digital
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="text" name="website" id="website" placeholder="Your Website URL" required="">
+                  <input type="text" name="website" id="website" placeholder="Your message" required="">
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="main-button">Submit Request</button>
+                  <button type="submit" id="form-submit" class="main-button">Submit</button>
                 </fieldset>
               </div>
             </div>
@@ -665,5 +664,6 @@ https://templatemo.com/tm-565-onix-digital
         }
     });
   </script>
+ 
 </body>
 </html>
