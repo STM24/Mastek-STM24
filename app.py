@@ -161,6 +161,7 @@ def summarize_text():
                            text_summary=Summary)
 
 # Route for File upload Summarization
+summary_string = ""
 @app.route('/summarize',methods=['POST'])
 def summarize():
     
@@ -226,10 +227,15 @@ def summarize():
         #     numOfLines = int(request.form['numOfLines'])            
 
         # Calling function for summarzation
-        Summary = generate_summary(file_text)
         
+
+        Summary = generate_summary(file_text)
+
+        #convert list into string
+        global summary_string
+        summary_string = ' '.join(Summary)    
     return render_template('summary_result.html',
-                               text_summary=Summary,
+                               text_summary=summary_string,
                             #    lines_original = original_length,
                             #    lines_summary = "numOfLines",
                                file_name = text.filename)
@@ -275,19 +281,23 @@ def download_csv():
 
     return response
 
+
+# ***********************Download Summary***************************
+@app.route('/download_summary')
+def download_summary():
+    # Add a summary in the file
+    with open('summary.txt', 'a') as f:
+        f.write(summary_string + '\n')
+    # return 'Data added successfully!'
+
+    with open('summary.txt', 'r') as f:
+        data = f.read()
+    return Response(
+        data,
+        mimetype="text/plain",
+        headers={"Content-disposition":
+                 "attachment; filename=summary.txt"})
+# ****************************************************************
 if __name__ == '__main__':
     app.run(debug=True, port=5000, threaded=True)
     
-
-
-#     import random
-# import string
-
-# # Generate a sequence of 8 random characters (4 letters and 4 numbers)
-# random_chars = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
-
-# # Insert an underscore after every 4 characters
-# result = '_'.join([random_chars[i:i+4] for i in range(0, len(random_chars), 4)])
-
-# # Print the result
-# print(result)
