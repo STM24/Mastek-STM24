@@ -11,6 +11,8 @@ import pandas as pd
 import io
 import random
 import string
+import os
+
 
 app = Flask(__name__)
 
@@ -242,6 +244,8 @@ def summarize():
 
         # ******************END************************
 
+
+
 @app.route('/download_csv')
 def download_csv():
     # Define the data to be included in the CSV file
@@ -286,6 +290,10 @@ def download_csv():
 @app.route('/download_summary')
 def download_summary():
     # Add a summary in the file
+    
+    # Delete a file
+    os.remove('summary.txt')
+
     with open('summary.txt', 'a') as f:
         f.write(summary_string + '\n')
     # return 'Data added successfully!'
