@@ -12,6 +12,7 @@ import io
 import random
 import string
 import os
+import re
 
 
 app = Flask(__name__)
@@ -235,12 +236,23 @@ def summarize():
 
         #convert list into string
         global summary_string
-        summary_string = ' '.join(Summary)    
+        summary_string = ' '.join(Summary)   
+
+        # **********Count total words and sentences***************
+        # text = "This is a sample sentence. Here is another one!"
+            # Count the number of words
+        words = re.findall(r'\w+', summary_string)
+        num_words = len(words)
+
+            # Count the number of sentences
+        sentences = re.findall(r'[^\s][^.!?]*[.!?]', summary_string)
+        num_sentences = len(sentences)
+        # ***************************************************** 
     return render_template('summary_result.html',
                                text_summary=summary_string,
-                            #    lines_original = original_length,
-                            #    lines_summary = "numOfLines",
-                               file_name = text.filename)
+                               file_name = text.filename,
+                               total_words = num_words,
+                               total_sentences = num_sentences)
 
         # ******************END************************
 

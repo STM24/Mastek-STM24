@@ -65,7 +65,9 @@
         <div class="container1">
             <p>Summarize any <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
+        </div>
 
+        <div class="container1" style="margin-top: 10px; margin-bottom: 20px;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <p class="s-para">Text Summarizer is an online summarizing tool that allows you to summarize long texts, paragraphs, and articles with their main concept in one click. paragraphs, and articles with their main concept in one click</p>
             <div class="twobuttons">
                 <div style="border-radius: 0;" class="main-blue-button-hover">
@@ -75,8 +77,8 @@
                     <a  onclick="showfile()">Upload a file</a>
                   </div>
             </div>
-        </div>
-        <div class="container2">
+       
+        <!-- <div class="container2"> -->
             <form action="{{ url_for('summarize_text')}}" method="POST" enctype = "multipart/form-data">
             <textarea name="text_summary" id="textarea" cols="140" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
             <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
@@ -84,7 +86,7 @@
                 <input type="submit"  value="Summarize">
             </div>
             </form>
-        </div>
+        <!-- </div> -->
        
         <div class="container4" id="filecontainer">
             <h2>
@@ -97,12 +99,13 @@
                 <div class="file-upload">
                   <input type="file" name="fileUpload" id="fileUpload" required>
                   <label for="fileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label>
-                  <p id="selectedfile">file name</p>
+                  <p id="selectedfile" style="font-size: 16px;"></p>
                 </div>                       
-            <div class="main-blue-button-hover">
+            <div class="main-blue-button-hover" style="padding: 2rem 0;">
                 <input type="submit"  value="Summarize">
             </div>
         </form>
+        </div>
         </div>
         <div id="div-results" style="color: red;">
             <!-- <p class="Detail-f">Number of sentences in original text : {{lines_original}}</p> -->

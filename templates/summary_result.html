@@ -62,13 +62,15 @@
         <div class="container1">
             <p>Here is your <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
-
-            <p class="s-para">Output summary of the transcript file of your meet and get the active attendance of your attendees, name of all the active attendees and the duration of the meet</p>           
         </div>
+
+        <div class="container1" style="margin-top:20px; margin-bottom: 15px; padding: 2rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <p class="s-para">Output summary of the transcript file of your meet and get the active attendance of your attendees, name of all the active attendees and the duration of the meet</p>           
+        
         <a href="{{ url_for('download_summary') }}" class="btn btn-primary" style="margin-bottom: 20px;">Download Summary</a>
 
 
-        <div class="container5" id="resultbox1">
+        <div style="border: 1px solid grey;" class="container5" id="resultbox1">
             <h2>Your results are ready !!</h2>
             <h3>Here is your Meeting's Summary.....</h3>
             <div class="subres">
@@ -77,10 +79,13 @@
                     <h4>Summary: </h4>
                     <span class="spanclass" style="font-size: 20px; font-weight: 200;">{{text_summary}}</span>
                 </div>
-            </div>
-        
+            </div> 
         </div>
+        <div>
+            <p style="color: #DD7732; font-size: 18px;">{{total_words}} words ,{{total_sentences}} sentences</p> 
+        </div>  
         </div>
+    </div>
         
 
         
