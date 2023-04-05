@@ -13,6 +13,10 @@ import random
 import string
 import os
 import re
+import speech_recognition as sr
+import os
+from pydub import AudioSegment
+from pydub.silence import split_on_silence
 
 
 app = Flask(__name__)
@@ -318,6 +322,60 @@ def download_summary():
         headers={"Content-disposition":
                  "attachment; filename=summary.txt"})
 # ****************************************************************
+
+
+# ***********************Voice to Text Page***************************
+@app.route('/voice_to_text')
+def voice_to_text():
+    return render_template('voice_to_text.html')
+# ****************************************************************
+
+# ***********************Voice to Text Result Page****************************
+@app.route('/voice_to_text_result', methods=['GET', 'POST'])
+def voice_to_text_result():
+    r = sr.Recognizer()
+    if request.method == 'POST':
+        audio_file = request.files['fileUpload']
+        audio_file_name = audio_file.filename
+        print("++++++++++++++++================", audio_file_name)
+
+        """Split audio into chunks and apply speech recognition"""
+    # Open audio file with pydub
+    sound = AudioSegment.from_wav(audio_file)
+
+    # Split audio where silence is 700ms or greater and get chunks
+    chunks = split_on_silence(sound, min_silence_len=700, silence_thresh=sound.dBFS-14, keep_silence=700)
+    
+    # Create folder to store audio chunks
+    folder_name = "audio-chunks"
+    if not os.path.isdir(folder_name):
+        os.mkdir(folder_name)
+    
+    whole_text = ""
+    # Process each chunk
+    for i, audio_chunk in enumerate(chunks, start=1):
+        # Export chunk and save in folder
+        chunk_filename = os.path.join(folder_name, f"chunk{i}.wav")
+        audio_chunk.export(chunk_filename, format="wav")
+
+        # Recognize chunk
+        with sr.AudioFile(chunk_filename) as source:
+            audio_listened = r.record(source)
+            # Convert to text
+            try:
+                text = r.recognize_google(audio_listened)
+            except sr.UnknownValueError as e:
+                print("Error:", str(e))
+            else:
+                text = f"{text.capitalize()}. "
+                print(chunk_filename, ":", text)
+                whole_text += text
+
+    # Return text for all chunks
+
+    return render_template('voice_result.html', whole_text= whole_text)
+# ****************************************************************
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, threaded=True)
     
