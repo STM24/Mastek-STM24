@@ -1,6 +1,7 @@
 from flask import Flask, Response, request, jsonify, render_template
 from final_summary import *
 from Meeting_duration import *
+from keywords import *
 from PyPDF2 import PdfReader
 import PyPDF2
 from transformers import pipeline
@@ -17,6 +18,7 @@ import speech_recognition as sr
 import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
+
 
 
 app = Flask(__name__)
@@ -164,8 +166,24 @@ def summarize_text():
 
         Summary = generate_summary(text_summary)
 
+        #convert list into string
+        global summary_string
+        summary_string = ' '.join(Summary)   
+
+        # **********Count total words and sentences***************
+        # text = "This is a sample sentence. Here is another one!"
+            # Count the number of words
+        words = re.findall(r'\w+', summary_string)
+        num_words = len(words)
+
+            # Count the number of sentences
+        sentences = re.findall(r'[^\s][^.!?]*[.!?]', summary_string)
+        num_sentences = len(sentences)
+
     return render_template('summary_result.html', 
-                           text_summary=Summary)
+                           text_summary=summary_string,
+                           total_words = num_words,
+                           total_sentences = num_sentences)
 
 # Route for File upload Summarization
 summary_string = ""
@@ -220,12 +238,16 @@ def summarize():
             # Iterate through captions and extract text
             file_text = ''
             for caption in captions:
-                file_text += caption.text + '\n'   
+                file_text += caption.text + '\n'
+            # print("Original text after removing stopwords =========>>>>  ",file_text)
+            
+            Keywords = keywords(file_text)
 
         else:
             #for txt file
-            f = open(text.filename, "r")
+            f = open(text.filename, "r", encoding="utf8")
             file_text = f.read()
+            Keywords = keywords(file_text)
 
 
         # if not request.form['numOfLines']:
@@ -256,7 +278,8 @@ def summarize():
                                text_summary=summary_string,
                                file_name = text.filename,
                                total_words = num_words,
-                               total_sentences = num_sentences)
+                               total_sentences = num_sentences,
+                               top_keywords = Keywords)
 
         # ******************END************************
 
@@ -264,13 +287,6 @@ def summarize():
 
 @app.route('/download_csv')
 def download_csv():
-    # Define the data to be included in the CSV file
-    # data = [['Name'],
-    #         ['COMP_TY_B_63_MOHAMMED_ADIL_KHATRI'],
-    #         ['COMP_TY_B_66_SHUBHAM_KANOJIYA'],
-    #         ['COMP_SY_B_60_HARSH_CHOTALIYA'],
-    #         ['Samantha']
-    #         ]
     
     insert_data = ["Active_attendees"]
     insert_data.extend(meet_attendee_list)
