@@ -84,8 +84,7 @@
             <textarea name="text_summary" id="textarea" cols="140" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
             <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
                 <!-- <a href = "{{ url_for('summarize')}}">Summarize Now</a> -->
-                <input class="button-65" id="my-btn" type="submit"  value="Summarize" onclick="uploadFile()">
-                <a href="#header" style="background-color: white;"></a>
+                <input class="button-65" id="my-btn" type="submit"  value="Summarize" onclick="uploadFile()" style="border-radius: 0;">
             </div>
             </form>
         <!-- </div> -->
@@ -104,7 +103,7 @@
                   <p id="selectedfile" style="font-size: 16px;"></p>
                 </div>                       
             <div class="main-blue-button-hover">
-                <input class="button-65" type="submit" value="Summarize" onclick="uploadFile()"><a href="#header"></a></input>
+                <input class="button-65" type="submit" value="Summarize" onclick="uploadFile()" style="border-radius: 0;">
                 
             </div>
         </form>
@@ -206,7 +205,6 @@ if (!file) {
 alert('Please select a file to upload ');
 return;
 }else{
-    alert("SDfvgjbiuarcsoxjipotjbpovkg;d");
     showAlertBox();
 
 closeBtn.addEventListener("click",function () {
