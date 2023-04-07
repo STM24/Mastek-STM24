@@ -20,6 +20,7 @@ from pydub import AudioSegment
 from pydub.silence import split_on_silence
 from moviepy.editor import VideoFileClip
 import shutil
+from audio_to_text import *
 
 
 app = Flask(__name__)
@@ -210,26 +211,11 @@ def summarize():
             reader = PdfReader(text.filename)
 
             page = reader.pages[0] #for single page
-            # getting a all pages from the pdf file
-            # page = len(reader.pages)
-
-            # pdfReader = PyPDF2.PdfFileReader(text.filename)
-            # # totalPages = pdfReader.numPages
-  
-            # # count number of pages
-            # totalPages = len(pdfReader.pages)
-            
-            # print("hhhhhhhhhhhhhhhhhhhh", totalPages)
-
-        
-            # extracting text from page
+           
             file_text = page.extractText()
 
         elif extension == "docx":
-            # f = open(text.filename, "r")
-            # file_text = f.read()
 
-            # Load the docx file
             doc = docx.Document(text.filename)
 
             # Extract the text from the document
@@ -252,15 +238,6 @@ def summarize():
             f = open(text.filename, "r", encoding="utf8")
             file_text = f.read()
             Keywords = keywords(file_text)
-
-
-        # if not request.form['numOfLines']:
-        #     numOfLines = 3
-        # else:
-        #     numOfLines = int(request.form['numOfLines'])            
-
-        # Calling function for summarzation
-        
 
         Summary = generate_summary(file_text)
 
@@ -359,12 +336,21 @@ def voice_to_text():
 def voice_to_text_result():
     r = sr.Recognizer()
     if request.method == 'POST':
-        audio_file = request.files['fileUpload']
-        audio_file_name = audio_file.filename
+        video_file = request.files['fileUpload']
+        video_file_name = video_file.filename
+        
+        video_folder_name = "video_chunks"
+        if not os.path.isdir(video_folder_name):
+            os.mkdir(video_folder_name)
 
-        print("))))))))))))))))))))))))))",audio_file_name)
+        target_folder = "video_chunks"
+        video_file.save(os.path.join(target_folder, video_file.filename))
+       
         # *************Video to audio*************8
-        clip = VideoFileClip("./Input_Files/sample_video.mp4")
+        # clip = VideoFileClip("./Input_Files/sample_video.mp4")
+        path = "./video_chunks/" + video_file_name
+
+        clip = VideoFileClip(path)
 
         # Extract the audio from the video
         audio = clip.audio
@@ -375,47 +361,20 @@ def voice_to_text_result():
 
         # Insert an underscore after every 4 characters
         result = '_'.join([random_chars1[i:i+4] for i in range(0, len(random_chars1), 4)])
-        audio_file_name = "video_to_audio" + result +".wav"
+        video_file_name_id = "video_to_audio" + result +".wav"
 
         # ***************************************
 
         # Save the audio to a WAV file
-        audio.write_audiofile(audio_file_name, codec='pcm_s16le') 
+        audio.write_audiofile(video_file_name_id, codec='pcm_s16le') 
 
         # """Split audio into chunks and apply speech recognition"""
     # Open audio file with pydub
-    sound = AudioSegment.from_wav(audio_file_name)
+        whole_text = convert_audio_to_text(video_file_name_id)
 
-    # Split audio where silence is 700ms or greater and get chunks
-    chunks = split_on_silence(sound, min_silence_len=700, silence_thresh=sound.dBFS-14, keep_silence=700)
-    
-    # Create folder to store audio chunks
-    folder_name = "audio-chunks"
-    if not os.path.isdir(folder_name):
-        os.mkdir(folder_name)
-    
-    whole_text = ""
-    # Process each chunk
-    for i, audio_chunk in enumerate(chunks, start=1):
-        # Export chunk and save in folder
-        chunk_filename = os.path.join(folder_name, f"chunk{i}.wav")
-        audio_chunk.export(chunk_filename, format="wav")
-
-        # Recognize chunk
-        with sr.AudioFile(chunk_filename) as source:
-            audio_listened = r.record(source)
-            # Convert to text
-            try:
-                text = r.recognize_google(audio_listened)
-            except sr.UnknownValueError as e:
-                print("Error:", str(e))
-            else:
-                text = f"{text.capitalize()}. "
-                # print(chunk_filename, ":", text)
-                whole_text += text
-
-    os.remove(audio_file_name)
-    shutil.rmtree("./audio-chunks")
+        os.remove(video_file_name_id)
+        shutil.rmtree("./audio-chunks")
+        # shutil.rmtree("./video_chunks")
 
     # Return text for all chunks
 
