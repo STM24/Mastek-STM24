@@ -21,12 +21,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/alert.css') }}">
   
     
     </head>
     <body>
                 <!-- ***** Header Area Start ***** -->
-        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <header class="header-area header-sticky wow slideInDown" id="header" data-wow-duration="0.75s" data-wow-delay="0s">
             <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -55,6 +56,11 @@
             </div>
             </div>
         </header>
+        <div class="alert-box hide hidden">
+            Yahoo!! File Uploaded successfully
+            Please wait for a result
+            <span class="close-alert">&times;</span>
+        </div>
         <!-- ***** Header Area End ***** -->
         <div class="container">
         <div class="container1">
@@ -78,7 +84,8 @@
             <textarea name="text_summary" id="textarea" cols="140" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
             <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
                 <!-- <a href = "{{ url_for('summarize')}}">Summarize Now</a> -->
-                <input class="button-65" type="submit"  value="Summarize">
+                <input class="button-65" id="my-btn" type="submit"  value="Summarize" onclick="uploadFile()">
+                <a href="#header" style="background-color: white;"></a>
             </div>
             </form>
         <!-- </div> -->
@@ -97,7 +104,8 @@
                   <p id="selectedfile" style="font-size: 16px;"></p>
                 </div>                       
             <div class="main-blue-button-hover">
-                <input class="button-65" type="submit" value="Summarize">
+                <input class="button-65" type="submit" value="Summarize" onclick="uploadFile()"><a href="#header"></a></input>
+                
             </div>
         </form>
         </div>
@@ -181,6 +189,49 @@
             document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
             if(textArray.length) setTimeout(type, newTextDelay + 250);
             });
+
+            // ********************Alert Box animation*****************
+function uploadFile() {
+
+var input = document.getElementById('fileUpload');
+var file = input.files[0];
+
+const myBtn=document.getElementById("my-btn");
+const alertBox=document.querySelector(".alert-box");
+const closeBtn=document.querySelector(".close-alert")     
+let timer;
+
+// Check if a file has been selected
+if (!file) {
+alert('Please select a file to upload ');
+return;
+}else{
+    alert("SDfvgjbiuarcsoxjipotjbpovkg;d");
+    showAlertBox();
+
+closeBtn.addEventListener("click",function () {
+    hideAlertBox();
+    clearTimeout(timer);
+})
+
+function showAlertBox(){
+  alertBox.classList.remove("hide");
+  alertBox.classList.add("show");
+  // hide animation onload 
+  if(alertBox.classList.contains("hidden")){
+      alertBox.classList.remove("hidden");
+  }
+  timer=setTimeout(function(){
+      hideAlertBox();
+  },6000)
+}
+
+function hideAlertBox(){
+ alertBox.classList.remove("show");
+  alertBox.classList.add("hide");
+}
+}
+}
         </script>
     </body>
 </html>
@@ -204,23 +255,6 @@
     }
 
 
-    // ****Alert if file is uploaded or not**************
-    function uploadFile() {
-  var input = document.getElementById('fileUpload');
-  var file = input.files[0];
-  
-  // Check if a file has been selected
-  if (!file) {
-    alert('Please select a file to upload');
-    return;
-  }
-  
-  // Upload the file (this is where you would make an AJAX request to your server)
-  // ...
-  
-  // Display a confirmation message
-  alert('File uploaded successfully!');
-}
 </script>
 
 <script>

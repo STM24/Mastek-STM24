@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/alert.css') }}">
   
     
     </head>
@@ -55,9 +56,16 @@
             </div>
             </div>
         </header>
+        <div class="alert-box hide hidden">
+            Yahoo!! File Uploaded successfully
+            Please wait for a result
+            <span class="close-alert">&times;</span>
+        </div>
+
         <!-- ***** Header Area End ***** -->
         <div class="container">
         <div class="container1">
+            
             <p>Convert your <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
         </div>
@@ -85,9 +93,13 @@
                           <p id="selectedfile" style="font-size: 16px;"></p>
                         </div>                       
                     <div class="main-blue-button-hover">
-                        <input class="button-65" type="submit" onclick="uploadFile()" value="Generate">
+                        <input class="button-65" id="my-btn" type="submit" onclick="uploadFile()" value="Generate">
+                         
                     </div>
+
                     </form>
+                    
+ 
                 </div>
             </div>
        
@@ -164,6 +176,48 @@
             document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
             if(textArray.length) setTimeout(type, newTextDelay + 250);
             });
+
+                // ********************Alert Box animation*****************
+function uploadFile() {
+
+    var input = document.getElementById('audiofileUpload');
+    var file = input.files[0];
+    
+   const myBtn=document.getElementById("my-btn");
+   const alertBox=document.querySelector(".alert-box");
+   const closeBtn=document.querySelector(".close-alert")     
+   let timer;
+  
+  // Check if a file has been selected
+  if (!file) {
+    alert('Please select a file to upload ');
+    return;
+  }else{
+        showAlertBox();
+
+   closeBtn.addEventListener("click",function () {
+        hideAlertBox();
+        clearTimeout(timer);
+   })
+
+   function showAlertBox(){
+      alertBox.classList.remove("hide");
+      alertBox.classList.add("show");
+      // hide animation onload 
+      if(alertBox.classList.contains("hidden")){
+          alertBox.classList.remove("hidden");
+      }
+      timer=setTimeout(function(){
+          hideAlertBox();
+      },6000)
+   }
+    
+   function hideAlertBox(){
+     alertBox.classList.remove("show");
+      alertBox.classList.add("hide");
+   }
+}
+}
         </script>
     </body>
 </html>
@@ -187,22 +241,22 @@
     }
 
      // ****Alert if file is uploaded or not**************
-     function uploadFile() {
-  var input = document.getElementById('audiofileUpload');
-  var file = input.files[0];
+//      function uploadFile() {
+//   var input = document.getElementById('audiofileUpload');
+//   var file = input.files[0];
   
-  // Check if a file has been selected
-  if (!file) {
-    alert('Please select a file to upload');
-    return;
-  }
+//   // Check if a file has been selected
+//   if (!file) {
+//     alert('Please select a file to upload');
+//     return;
+//   }
   
-  // Upload the file (this is where you would make an AJAX request to your server)
-  // ...
+//   // Upload the file (this is where you would make an AJAX request to your server)
+//   // ...
   
-  // Display a confirmation message
-  alert('File uploaded successfully!');
-}
+//   // Display a confirmation message
+//   alert('File uploaded successfully!');
+// }
 </script>
 
 <script>
