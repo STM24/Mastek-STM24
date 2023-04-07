@@ -18,7 +18,8 @@ import speech_recognition as sr
 import os
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
-
+from moviepy.editor import VideoFileClip
+import shutil
 
 
 app = Flask(__name__)
@@ -180,10 +181,13 @@ def summarize_text():
         sentences = re.findall(r'[^\s][^.!?]*[.!?]', summary_string)
         num_sentences = len(sentences)
 
+        Keywords = keywords(text_summary)
+
     return render_template('summary_result.html', 
                            text_summary=summary_string,
                            total_words = num_words,
-                           total_sentences = num_sentences)
+                           total_sentences = num_sentences,
+                           top_keywords = Keywords)
 
 # Route for File upload Summarization
 summary_string = ""
@@ -353,11 +357,30 @@ def voice_to_text_result():
     if request.method == 'POST':
         audio_file = request.files['fileUpload']
         audio_file_name = audio_file.filename
-        print("++++++++++++++++================", audio_file_name)
 
-        """Split audio into chunks and apply speech recognition"""
+        print("))))))))))))))))))))))))))",audio_file_name)
+        # *************Video to audio*************8
+        clip = VideoFileClip("./Input_Files/sample_video.mp4")
+
+        # Extract the audio from the video
+        audio = clip.audio
+
+        # *******Generate random file name***
+        # Generate a sequence of 8 random characters (4 letters and 4 numbers)
+        random_chars1 = ''.join(random.choices(string.ascii_lowercase + string.digits, k=16))
+
+        # Insert an underscore after every 4 characters
+        result = '_'.join([random_chars1[i:i+4] for i in range(0, len(random_chars1), 4)])
+        audio_file_name = "video_to_audio" + result +".wav"
+
+        # ***************************************
+
+        # Save the audio to a WAV file
+        audio.write_audiofile(audio_file_name, codec='pcm_s16le') 
+
+        # """Split audio into chunks and apply speech recognition"""
     # Open audio file with pydub
-    sound = AudioSegment.from_wav(audio_file)
+    sound = AudioSegment.from_wav(audio_file_name)
 
     # Split audio where silence is 700ms or greater and get chunks
     chunks = split_on_silence(sound, min_silence_len=700, silence_thresh=sound.dBFS-14, keep_silence=700)
@@ -384,8 +407,11 @@ def voice_to_text_result():
                 print("Error:", str(e))
             else:
                 text = f"{text.capitalize()}. "
-                print(chunk_filename, ":", text)
+                # print(chunk_filename, ":", text)
                 whole_text += text
+
+    os.remove(audio_file_name)
+    shutil.rmtree("./audio-chunks")
 
     # Return text for all chunks
 

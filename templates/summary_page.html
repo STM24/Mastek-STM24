@@ -202,6 +202,25 @@
         x.style.display="block";
 
     }
+
+
+    // ****Alert if file is uploaded or not**************
+    function uploadFile() {
+  var input = document.getElementById('fileUpload');
+  var file = input.files[0];
+  
+  // Check if a file has been selected
+  if (!file) {
+    alert('Please select a file to upload');
+    return;
+  }
+  
+  // Upload the file (this is where you would make an AJAX request to your server)
+  // ...
+  
+  // Display a confirmation message
+  alert('File uploaded successfully!');
+}
 </script>
 
 <script>

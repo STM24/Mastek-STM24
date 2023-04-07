@@ -75,7 +75,13 @@
                 <div class="firstres">
 
                     <h4>Here is your Text: </h4>
-                    <span class="spanclass" style="font-size: 20px; font-weight: 200;">{{whole_text}}</span>
+
+                        <form action="{{ url_for('summarize_text')}}" method="POST" enctype = "multipart/form-data">
+                            <textarea name="text_summary" id="textarea" cols="140" rows="10"style="display: block; text-align:justify;">{{whole_text}}</textarea>
+                            <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
+                                <input class="button-65" type="submit"  value="Summarize">
+                            </div>
+                        </form>
                 </div>
             </div> 
         </div>
