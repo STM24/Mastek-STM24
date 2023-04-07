@@ -41,8 +41,11 @@
 .container1 .s-para{
   font-size: 1.3rem;
   letter-spacing: normal;
+  text-align: center;
   font-weight: 300;
-  padding-top: 40px;
+  margin: 40px 30px 0px 30px;
+  /* background-color: rgb(237 245 255 / var(1)); */
+  background-color: #f4e7e780;
 }
 .twobuttons{
   display: flex;

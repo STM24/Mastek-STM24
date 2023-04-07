@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-onix-digital.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/attendees.css') }}">
 
     </head>
@@ -60,6 +60,7 @@
         <div class="container1">
             <p>Here is your <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
+            
         </div>
 
         <div class="container1" style="margin-top:20px; margin-bottom: 15px; padding: 2rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
@@ -79,7 +80,7 @@
                         <form action="{{ url_for('summarize_text')}}" method="POST" enctype = "multipart/form-data">
                             <textarea name="text_summary" id="textarea" cols="140" rows="10"style="display: block; text-align:justify;">{{whole_text}}</textarea>
                             <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
-                                <input class="button-65" type="submit"  value="Summarize">
+                                <input class="btn btn-primary" style="margin-bottom: 20px;"  type="submit"  value="Summarize">
                             </div>
                         </form>
                 </div>

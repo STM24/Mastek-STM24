@@ -292,6 +292,7 @@ def summarize():
 @app.route('/download_csv')
 def download_csv():
     
+    
     insert_data = ["Active_attendees"]
     insert_data.extend(meet_attendee_list)
 
@@ -323,24 +324,27 @@ def download_csv():
 
 
 # ***********************Download Summary***************************
-@app.route('/download_summary')
+@app.route('/download_summary',methods=['POST'])
 def download_summary():
+
+    if request.method == 'POST':
+        text_summary = request.form['text_summary']
     # Add a summary in the file
     
     # Delete a file
-    os.remove('summary.txt')
+        os.remove('summary.txt')
 
-    with open('summary.txt', 'a') as f:
-        f.write(summary_string + '\n')
-    # return 'Data added successfully!'
+        with open('summary.txt', 'a') as f:
+            f.write(text_summary + '\n')
+        # return 'Data added successfully!'
 
-    with open('summary.txt', 'r') as f:
-        data = f.read()
-    return Response(
-        data,
-        mimetype="text/plain",
-        headers={"Content-disposition":
-                 "attachment; filename=summary.txt"})
+        with open('summary.txt', 'r') as f:
+            data = f.read()
+        return Response(
+            data,
+            mimetype="text/plain",
+            headers={"Content-disposition":
+                    "attachment; filename=summary.txt"})
 # ****************************************************************
 
 

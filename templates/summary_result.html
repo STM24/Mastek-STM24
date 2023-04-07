@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-onix-digital.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/attendees.css') }}">
 
     </head>
@@ -66,19 +66,21 @@
 
         <div class="container1" style="margin-top:20px; margin-bottom: 15px; padding: 2rem; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <p class="s-para">Output summary of the transcript file of your meet and get the active attendance of your attendees, name of all the active attendees and the duration of the meet</p>           
-        
-        <a href="{{ url_for('download_summary') }}" class="btn btn-primary" style="margin-bottom: 20px;">Download Summary</a>
-
-
-        <div style="border: 1px solid grey;" class="container5" id="resultbox1">
+           
+       <div style="border: 1px solid grey;" class="container5" id="resultbox1">
             <h2>Your results are ready !!</h2>
             <h3>Here is your Meeting's Summary.....</h3>
+
+            
             <div class="subres">
                 <div class="firstres" style="text-align: justify;">
-
-                    <h4>Summary: </h4>
-                    <textarea name="text_summary" id="textarea" cols="140" rows="10"style="display: block; text-align:justify;">{{text_summary}}</textarea>
-                    <!-- <span class="spanclass" style="font-size: 20px; font-weight: 200;">{{text_summary}}</span> -->
+                    <form action="{{ url_for('download_summary')}}" method="POST" enctype = "multipart/form-data">
+                        <input class="btn btn-primary" id="my-btn" type="submit"  value="Download Summary">
+                        <h4>Summary: </h4>
+                        <textarea name="text_summary" id="textarea" cols="140" rows="10"style="display: block; text-align:justify;">{{text_summary}}</textarea>
+                        <!-- <span class="spanclass" style="font-size: 20px; font-weight: 200;">{{text_summary}}</span> -->
+                    </form>
+                    
                 </div>
             </div> 
         </div>
