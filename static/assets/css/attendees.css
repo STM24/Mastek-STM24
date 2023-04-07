@@ -41,11 +41,11 @@
 .container1 .s-para{
   font-size: 1.3rem;
   letter-spacing: normal;
-  text-align: center;
-  font-weight: 400;
+  text-align: justify;
+  font-weight: 600;
   margin: 40px 30px 0px 30px;
-  /* background-color: rgb(237 245 255 / var(1)); */
-  background-color: #f4e7e780;
+ font-family: sans-serif;
+
 }
 .twobuttons{
   display: flex;
@@ -85,6 +85,7 @@ textarea{
   border-radius: 1rem;
   margin: 3rem;
   padding: 1rem;
+  width: 70%;
 }
 .container4:hover{
   cursor: pointer;

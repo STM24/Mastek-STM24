@@ -22,11 +22,16 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-onix-digital.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animated.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/progress.css') }}">
+
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/attendees.css') }}">
 
     </head>
     <body>
+        <div id="progress">
+            <span id="progress-value">&#x1F815;</span>
+          </div>
                 <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
             <div class="container">
@@ -35,17 +40,12 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url_for('home') }}" class="logo">
-                    <img src="{{ url_for('static', filename='assets/images/logo2.png') }}">
+                    <img src="{{ url_for('static', filename='assets/images/logo6.png') }}">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                     <li class="scroll-to-section"><a href="{{ url_for('home') }}" class="active">Home</a></li>
-                    <li class="scroll-to-section"><a href="#services">Services</a></li>
-                    <li class="scroll-to-section"><a href="#about">About</a></li>
-                    <li class="scroll-to-section"><a href="#portfolio">Team</a></li>
-                    <!-- <li class="scroll-to-section"><a href="#video">Videos</a></li>  -->
-                    <li class="scroll-to-section"><a href="#contact">Contact Us</a></li> 
                         
                     </ul>        
                     <a class='menu-trigger'>
@@ -99,6 +99,8 @@
         <script src="{{ url_for('static', filename='assets/js/animation.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+         <script src="{{ url_for('static', filename='assets/js/scroll.js') }}"></script>
+
 
         <script>
         // Acc

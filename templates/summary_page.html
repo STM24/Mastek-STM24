@@ -22,10 +22,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/alert.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/attendees.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/progress.css') }}">
+
+
   
     
     </head>
     <body>
+        <div id="progress">
+            <span id="progress-value">&#x1F815;</span>
+          </div>
                 <!-- ***** Header Area Start ***** -->
         <header class="header-area header-sticky wow slideInDown" id="header" data-wow-duration="0.75s" data-wow-delay="0s">
             <div class="container">
@@ -34,18 +41,12 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="{{ url_for('home')}}" class="logo">
-                    <img src="{{ url_for('static', filename='assets/images/logo5.jpeg') }}">
+                    <img src="{{ url_for('static', filename='assets/images/logo6.png') }}">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                    <li class="scroll-to-section"><a href="{{ url_for('home')}}" class="active">Home</a></li>
-                    <li class="scroll-to-section"><a href="#services">Services</a></li>
-                    <li class="scroll-to-section"><a href="#about">About</a></li>
-                    <li class="scroll-to-section"><a href="#portfolio">Team</a></li>
-                    <!-- <li class="scroll-to-section"><a href="#video">Videos</a></li>  -->
-                    <li class="scroll-to-section"><a href="#contact">Contact Us</a></li> 
-                        
+                  
                     </ul>        
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -69,7 +70,7 @@
         </div>
 
         <div class="container1" style="margin-top: 10px; margin-bottom: 20px;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <p class="s-para">SummerAIrizer offers cutting-edge text summarization tools that can condense lengthy articles or documents into concise and easily digestible summaries. With our user-friendly interface, you can save time and stay informed on the go. Whether you're a busy professional, a student, or simply someone who wants to stay up-to-date, our text summarization tool is a game-changer. Try it out today and experience the power of streamlined information at your fingertips!</p>
+            <p class="s-para"> Are you a busy professional?? Our summAIrizer tool is a game-changer. Give it a shot and experience the power of streamlined information at your fingertips!</p>
             <div class="twobuttons">
                 <div style="border-radius: 0;" class="main-blue-button-hover">
                     <a  onclick="showtext()">Paste your text</a>
@@ -81,10 +82,10 @@
        
         <!-- <div class="container2"> -->
             <form action="{{ url_for('summarize_text')}}" method="POST" enctype = "multipart/form-data">
-            <textarea name="text_summary" id="textarea" cols="140" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
+            <textarea name="text_summary" id="textarea" cols="80" rows="10" placeholder="Enter your raw text here.... " style="display: block;"></textarea>
             <div class="main-blue-button-hover" id="textarea_btn" style="padding-top: 2rem;">
                 <!-- <a href = "{{ url_for('summarize')}}">Summarize Now</a> -->
-                <input class="button-65" id="my-btn" type="submit"  value="Summarize" onclick="uploadFile()" style="border-radius: 0;">
+                <input class="button-65" id="my-btn" type="submit"  value="Summarize" onclick="uploadFile()" >
             </div>
             </form>
         <!-- </div> -->
@@ -126,6 +127,8 @@
         <script src="{{ url_for('static', filename='assets/js/animation.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/scroll.js') }}"></script>
+
 
         <script>
         // Acc

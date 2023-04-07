@@ -213,35 +213,8 @@
 
   /* CSS */
 .button-65 {
-  appearance: none;
-  backface-visibility: hidden;
-  background-color: #03a4ed;
-  border-radius: 23px;
-  border-style: none;
-  box-shadow: none;
-  box-sizing: border-box;
-  color: #212529;
-  cursor: pointer;
-  display: inline-block;
-  /* font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif; */
-  font-size: 15px;
-  font-weight: 500;
-  height: 45px;
-  letter-spacing: normal;
-  line-height: 1.5;
-  outline: none;
-  overflow: hidden;
-  padding: 14px 30px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transform: translate3d(0, 0, 0);
-  transition: all .3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: top;
-  white-space: nowrap;
+background-color: #03a4ed;
+margin: 1rem;
 }
 
 .button-65:hover {

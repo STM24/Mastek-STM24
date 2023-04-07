@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 .container1 p {
   font-size: 3rem;
@@ -17,6 +18,7 @@
 }
 
 .container1 p span.typed-text {
+  font-weight: 600;
   font-weight: normal;
   color: #dd7732;
 }
@@ -41,11 +43,13 @@
 .container1 .s-para{
   font-size: 1.3rem;
   letter-spacing: normal;
-  text-align: center;
-  font-weight: 300;
+  /* text-align: center; */
+  font-weight: 800;
   margin: 40px 30px 0px 30px;
+  font-family: 'Times New Roman', Times, serif;
   /* background-color: rgb(237 245 255 / var(1)); */
-  background-color: #f4e7e780;
+  text-align: justify;
+  /* background-color: #f4e7e780; */
 }
 .twobuttons{
   display: flex;
@@ -154,65 +158,13 @@ input[type="file"] {
   background-color: #f0f0f0;
 }
 
-
-/* CSS */
-.button-65 {
-  appearance: none;
-  backface-visibility: hidden;
-  background-color: #03a4ed;
-  border-radius: 23px;
-  border-style: none;
-  box-shadow: none;
-  box-sizing: border-box;
-  color: #212529;
-  cursor: pointer;
-  display: inline-block;
-  /* font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif; */
-  font-size: 15px;
-  font-weight: 500;
-  height: 45px;
-  letter-spacing: normal;
-  line-height: 1.5;
-  outline: none;
-  overflow: hidden;
-  padding: 14px 30px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transform: translate3d(0, 0, 0);
-  transition: all .3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: top;
-  white-space: nowrap;
+.main-blue-button-hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button-65:hover {
-  background-color: #1366d6;
-  box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
-  opacity: 1;
-  transform: translateY(0);
-  transition-duration: .35s;
-}
 
-.button-65:hover:after {
-  opacity: .5;
-}
-
-.button-65:active {
-  box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
-  transform: translateY(2px);
-  transition-duration: .35s;
-}
-
-.button-65:active:after {
-  opacity: 1;
-}
-
-@media (min-width: 768px) {
-  .button-65 {
-    padding: 10px 22px;
-    width: 155px;
-  }
+#my-btn{
+  border-radius: 12px;
 }
