@@ -86,7 +86,7 @@
                     </h3>
                     <form action="{{ url_for('voice_to_text_result')}}" method="POST" enctype = "multipart/form-data">
                         <div class="file-upload">
-                          <input type="file" name="fileUpload" id="audiofileUpload" required>
+                          <input type="file" name="fileUpload" id="audiofileUpload" required accept=".mp4" onchange="validateFile(this)">
                           <label for="audiofileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label>
                           <p id="selectedfile" style="font-size: 16px;"></p>
                         </div>                       
@@ -114,6 +114,16 @@
         <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
 
         <script>
+
+            // *************Validation for a input file***********
+            
+            function validateFile(input) {
+            if (!input.files[0] || input.files[0].type !== "video/mp4") {
+                alert("Please select a valid MP4 file.");
+                input.value = ""; // Clear the input field
+            }
+            }
+
         // Acc
             $(document).on("click", ".naccs .menu div", function() {
             var numberIndex = $(this).index();

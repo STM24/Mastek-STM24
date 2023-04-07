@@ -379,7 +379,23 @@ def voice_to_text_result():
     # Return text for all chunks
 
     return render_template('voice_result.html', whole_text= whole_text)
+    
 # ****************************************************************
+
+@app.route('/audio_to_text', methods=['GET', 'POST'])
+def audio_to_text():
+    r = sr.Recognizer()
+    if request.method == 'POST':
+        audio_file = request.files['fileUpload']
+        audio_file_name = audio_file.filename
+        
+        whole_text = convert_audio_to_text(audio_file_name)
+        shutil.rmtree("./audio-chunks")
+        # shutil.rmtree("./video_chunks")
+
+    # Return text for all chunks
+
+    return render_template('voice_result.html', whole_text= whole_text)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, threaded=True)

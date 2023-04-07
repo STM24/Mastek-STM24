@@ -72,7 +72,7 @@
                 <label for="file-upload" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> Custom Upload
                 </label>
-                <input id="file-upload" type="file" name="myfile" accept=".vtt" required />
+                <input id="file-upload" type="file" name="myfile" accept=".vtt" required onchange="validateFile(this)" />
                 <p id="selectedfile" style="font-size: 18px;"></p>
                 <div style="border-radius: 0;" class="main-blue-button-hover">
                     <input type="submit" class="button-65" onclick="showtext()" />
@@ -193,13 +193,20 @@
 </script>
 
 <script>
-    const input = document.getElementById("file-upload");
-    input.addEventListener("change", function() {
-      const file = input.files[0];
-      const extension = file.name.split(".").pop();
-      if (extension.toLowerCase() !== "vtt") {
-        alert("Please select a VTT file.");
-        input.value = ""; // clear the input field
-      }
-    });
+    // const input = document.getElementById("file-upload");
+    // input.addEventListener("change", function() {
+    //   const file = input.files[0];
+    //   const extension = file.name.split(".").pop();
+    //   if (extension.toLowerCase() !== "vtt") {
+    //     alert("Please select a VTT file.");
+    //     input.value = ""; // clear the input field
+    //   }
+    // });
+
+    function validateFile(input) {
+            if (!input.files[0] || input.files[0].type !== "vtt") {
+                alert("Please select a .vtt file.");
+                input.value = ""; // Clear the input field
+            }
+            }
 </script>
