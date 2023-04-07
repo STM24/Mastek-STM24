@@ -22,14 +22,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/alert.css') }}">
-  <style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/attendees.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/progress.css') }}">
+
+
   
-  </style>
     
     </head>
     <body>
+        <div id="progress">
+            <span id="progress-value">&#x1F815;</span>
+          </div>
                 <!-- ***** Header Area Start ***** -->
-        <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <header class="header-area header-sticky wow slideInDown" id="header" data-wow-duration="0.75s" data-wow-delay="0s">
             <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -41,9 +46,7 @@
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                    <li class="scroll-to-section"><a href="{{ url_for('home')}}" class="active">Home</a></li>
-                 
-                        
+                  
                     </ul>        
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -59,50 +62,73 @@
             Please wait for a result
             <span class="close-alert">&times;</span>
         </div>
-
         <!-- ***** Header Area End ***** -->
         <div class="container">
         <div class="container1">
-            
-            <p>Convert your <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
+            <p>Summarize any <span class="typed-text"></span><span class="cursor1">&nbsp;</span></p>
             <p style="font-size: 2.2rem;">in a click</p>
         </div>
 
         <div class="container1" style="margin-top: 10px; margin-bottom: 20px;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <p class="s-para">Convert your Audio File (Recording of meet) into Text using our Audio To Text Model</p>
+            <p class="s-para">Summarize any audio or video file (Recording of meet) into Text using summAIrizer</p>
             <div class="twobuttons">
-                <!-- <div style="border-radius: 0;" class="main-blue-button-hover">
-                    <a  onclick="showtext()">Paste your text</a>
-                  </div> -->
-                  <!-- <div class="main-blue-button-hover">
-                    <a  onclick="showfile()">Upload a file</a>
-                  </div> -->
-                <div class="container4" id="filecontainer1">
-                    <h2>
-                        Upload the file 
-                    </h2>
-                    <h3>
-                        in .wav
-                    </h3>
-                    <form action="{{ url_for('voice_to_text_result')}}" method="POST" enctype = "multipart/form-data">
-                        <div class="file-upload">
-                          <input type="file" name="fileUpload" id="audiofileUpload" required accept=".mp4" onchange="validateFile(this)">
-                          <label for="audiofileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label>
-                          <p id="selectedfile" style="font-size: 16px;"></p>
-                        </div>                       
-                    <div class="main-blue-button-hover">
-                        <input class="button-65" id="my-btn" type="submit" onclick="uploadFile()" value="Generate">
-                         
-                    </div>
-
-                    </form>
-                    
- 
-                </div>
+                <div style="border-radius: 0;" class="main-blue-button-hover">
+                    <a  onclick="showtext()">Upload video file (mp4)</a>
+                  </div>
+                  <div class="main-blue-button-hover">
+                    <a  onclick="showfile()">Upload audio file (wav)</a>
+                  </div>
             </div>
        
-        
+            <div class="container4" id="textarea">
+                <h2 style="text-align: center;"> 
+                    Upload the video file 
+                </h2>
+                <h3>
+                    in .mp4 format
+                </h3>
+                <form action="{{ url_for('voice_to_text_result')}}" method="POST" enctype = "multipart/form-data">
+                    <div class="file-upload" style="display: flex; justify-content: center;
+                    align-items: center;">
+                      <input type="file" name="fileUpload" id="fileUpload" required accept=".mp4" onchange="validateFile(this)">
+                      <label for="fileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label ><br>
+                      <p id="selectedfile" style="font-size: 16px;"></p>
+                    </div>                       
+                <div class="main-blue-button-hover">
+                    <input class="button-65" type="submit" value="Convert to text" onclick="uploadFile()" style="border-radius: 0;">
+                    
+                </div>
+            </form>
+            </div>
+       
+        <div class="container4" id="filecontainer">
+            <h2 style="text-align: center;">
+                Upload the audio file 
+            </h2>
+            <h3>
+                in .wav format
+            </h3>
+            <form action="{{ url_for('audio_to_text')}}" method="POST" enctype = "multipart/form-data">
+                <div class="file-upload">
+                  <input type="file" name="fileUpload" id="fileUpload" required accept=".wav" onchange="validateFile_aud_file(this)">
+                  <label for="fileUpload" class="custom-file-upload"><i class="fa fa-cloud-upload"></i> Choose a file</label>
+                  <p id="selectedfile" style="font-size: 16px;"></p>
+                </div>                       
+            <div class="main-blue-button-hover">
+                <input class="button-65" type="submit" value="Summarize" onclick="uploadFile()" style="border-radius: 0;">
+                
+            </div>
+        </form>
         </div>
+        </div>
+        <div id="div-results" style="color: red;">
+            <!-- <p class="Detail-f">Number of sentences in original text : {{lines_original}}</p> -->
+        	<!-- <p class="Detail-f">Number of sentences in summarized version : {{lines_summary}}</p> -->
+			<!-- <p class="Detail-f">File name: {{file_name}}</p> -->
+    
+        	<!-- <h3 style="color: black; padding-left: 60px;">Summary:</h3> -->
+        	<p class="result-s">{{ text_summary }}</p>
+    	</div>
         </div>
 
         <!-- Scripts -->
@@ -112,6 +138,8 @@
         <script src="{{ url_for('static', filename='assets/js/animation.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/scroll.js') }}"></script>
+
 
         <script>
 
@@ -123,6 +151,15 @@
                 input.value = ""; // Clear the input field
             }
             }
+
+            function validateFile_aud_file(aud_input) {
+            if (!aud_input.files[0] || aud_input.files[0].type !== "audio/wav") {
+                alert("Please select a .wav file.");
+                aud_input.value = ""; // Clear the input field
+            }
+            }
+
+            
 
         // Acc
             $(document).on("click", ".naccs .menu div", function() {
@@ -146,7 +183,7 @@
             const typedTextSpan = document.querySelector(".typed-text");
             const cursorSpan = document.querySelector(".cursor1");
 
-            const textArray = [".mp3 file", ".wav file"];
+            const textArray = [".mp4 file", ".wav file",];
             const typingDelay = 150;
             const erasingDelay = 100;
             const newTextDelay = 1000; // Delay between current and next text
@@ -185,45 +222,45 @@
             if(textArray.length) setTimeout(type, newTextDelay + 250);
             });
 
-                // ********************Alert Box animation*****************
+            // ********************Alert Box animation*****************
 function uploadFile() {
 
-    var input = document.getElementById('audiofileUpload');
-    var file = input.files[0];
-    
-   const myBtn=document.getElementById("my-btn");
-   const alertBox=document.querySelector(".alert-box");
-   const closeBtn=document.querySelector(".close-alert")     
-   let timer;
-  
-  // Check if a file has been selected
-  if (!file) {
-    alert('Please select a file to upload ');
-    return;
-  }else{
-        showAlertBox();
+var input = document.getElementById('fileUpload');
+var file = input.files[0];
 
-   closeBtn.addEventListener("click",function () {
-        hideAlertBox();
-        clearTimeout(timer);
-   })
+const myBtn=document.getElementById("my-btn");
+const alertBox=document.querySelector(".alert-box");
+const closeBtn=document.querySelector(".close-alert")     
+let timer;
 
-   function showAlertBox(){
-      alertBox.classList.remove("hide");
-      alertBox.classList.add("show");
-      // hide animation onload 
-      if(alertBox.classList.contains("hidden")){
-          alertBox.classList.remove("hidden");
-      }
-      timer=setTimeout(function(){
-          hideAlertBox();
-      },6000)
-   }
-    
-   function hideAlertBox(){
-     alertBox.classList.remove("show");
-      alertBox.classList.add("hide");
-   }
+// Check if a file has been selected
+if (!file) {
+alert('Please select a file to upload ');
+return;
+}else{
+    showAlertBox();
+
+closeBtn.addEventListener("click",function () {
+    hideAlertBox();
+    clearTimeout(timer);
+})
+
+function showAlertBox(){
+  alertBox.classList.remove("hide");
+  alertBox.classList.add("show");
+  // hide animation onload 
+  if(alertBox.classList.contains("hidden")){
+      alertBox.classList.remove("hidden");
+  }
+  timer=setTimeout(function(){
+      hideAlertBox();
+  },6000)
+}
+
+function hideAlertBox(){
+ alertBox.classList.remove("show");
+  alertBox.classList.add("hide");
+}
 }
 }
         </script>
@@ -233,6 +270,9 @@ function uploadFile() {
     var b = document.getElementById("filecontainer");
     var a = document.getElementById("textarea");
     var x = document.getElementById("textarea_btn");
+a.style.display="block";
+// b.style.display="block";
+
 
     function showfile()
     {
@@ -248,30 +288,15 @@ function uploadFile() {
 
     }
 
-     // ****Alert if file is uploaded or not**************
-//      function uploadFile() {
-//   var input = document.getElementById('audiofileUpload');
-//   var file = input.files[0];
-  
-//   // Check if a file has been selected
-//   if (!file) {
-//     alert('Please select a file to upload');
-//     return;
-//   }
-  
-//   // Upload the file (this is where you would make an AJAX request to your server)
-//   // ...
-  
-//   // Display a confirmation message
-//   alert('File uploaded successfully!');
-// }
+
+
 </script>
 
 <script>
 
     // ****************************
     // To display filE nAME
-    const fileInput = document.getElementById('audiofileUpload');
+    const fileInput = document.getElementById('fileUpload');
             const fileName = document.getElementById('selectedfile');
 
             fileInput.addEventListener('change', () => {
