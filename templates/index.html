@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/summarize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/newcarousel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/progress.css') }}">
+
 
 <!--
 
@@ -40,13 +42,10 @@ https://templatemo.com/tm-565-onix-digital
   </head>
 
 <body>
-  <div class="progress-bar" >
-<button class="back-to-top hidden">
-  <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-  </svg>
-</button>
-</div>
+  <div id="progress">
+    <span id="progress-value">&#x1F815;</span>
+  </div>
+
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -76,7 +75,7 @@ https://templatemo.com/tm-565-onix-digital
             <ul class="nav">
               <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
               <li class="scroll-to-section"><a href="#services">Services</a></li>
-              <li class="scroll-to-section"><a href="#about">About</a></li>
+              <li class="scroll-to-section"><a href="#about">Features</a></li>
               <li class="scroll-to-section"><a href="#portfolio">Team</a></li>
               <li class="scroll-to-section"><a href="{{ url_for('voice_to_text')}}">Voice</a></li>
               <!-- <li class="scroll-to-section"><a href="#video">Videos</a></li>  -->
@@ -161,18 +160,18 @@ https://templatemo.com/tm-565-onix-digital
           <div class="owl-carousel owl-services">
             <div class="item">
               <h4>Summarization of your Transcript</h4>
-              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-04.png') }}" alt=""></div>
-              <p>Feel free to use this template for your business</p>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/summary.jpeg') }}" alt=""></div>
+              <p>Summarize your transcript generated from summAIrizer</p>
             </div>
             <div class="item">
-              <h4>Summarize your Raw Text</h4>
+              <h4>Summarize your Raw <br> Text</h4>
               <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-03.png') }}" alt=""></div>
 
               <p>Get to know more about the topic in details</p>
             </div>
             <div class="item">
               <h4>Find Total Active Attendees</h4>
-              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-04.png') }}" alt=""></div>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/attendees.jpeg') }}" alt=""></div>
 
               <p>Get to know more about the topic in details</p>
             </div>
@@ -183,17 +182,12 @@ https://templatemo.com/tm-565-onix-digital
               <p>Feel free to use this template for your business</p>
             </div>
             <div class="item">
-              <h4>Audio to Text</h4>
-              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-02.png') }}" alt=""></div>
+              <h4>Convert Audio to <br> Text</h4>
+              <div class="icon"><img src="{{ url_for('static', filename='assets/images/video-text.jpeg') }}" alt=""></div>
 
               <p>Upload your file for Speech-To-Text transcription </p>
             </div>
-            <div class="item">
-              <h4>Live Speech-To-Text</h4>
-              <div class="icon"><img src="{{ url_for('static', filename='assets/images/service-icon-01.png') }}" alt=""></div>
-
-              <p>Record your audio from our platform and get converted it into texts</p>
-            </div>
+          
          
          
         
@@ -208,10 +202,12 @@ https://templatemo.com/tm-565-onix-digital
       <div class="row">
         <div class="col-lg-6 align-self-center">
           <div class="left-image">
-            <img src="{{ url_for('static', filename='assets/images/about-left-image.png') }}" alt="Two Girls working together">
+            <img src="{{ url_for('static', filename='assets/images/sum-vec.jpg') }}" alt="Summarization">
           </div>
         </div>
+        
         <div class="col-lg-6">
+          
           <div class="section-heading">
             <h2>Transforming the way you read: <em>Text summarization at your fingertips.</em></h2>
             <p style="text-align: justify;">In today's fast-paced world, time is a precious commodity. With the overwhelming amount of information available online, it can be challenging to keep up with everything. That's where text summarization comes in. By condensing lengthy articles or documents into concise and digestible summaries, you can save time and easily stay informed on the latest news and trends. Our website offers top-of-the-line text summarization tools that are quick, accurate, and user-friendly. Try it out today and see how it can simplify your life!</p>
@@ -284,7 +280,32 @@ https://templatemo.com/tm-565-onix-digital
         </div>
         <div class="col-lg-6">
           <div class="left-image">
-            <img src="{{ url_for('static', filename='assets/images/about-left-image.png') }}" alt="Two Girls working together">
+            <img src="{{ url_for('static', filename='assets/images/vector-home.jpg') }}" alt="Two Girls working together">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-us section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="section-heading">
+            <h2>Convert your Audio or Video file  <span>to a meaningful text</span></h2>
+            <p style="text-align: justify;">Do you struggle to keep track of your attendance? Are you tired of manually recording your attendance from your transcripts? Look no further! Our website offers a convenient and reliable way to extract attendance data from your transcripts. With just a few clicks, you can access accurate attendance information that can be easily exported and shared. Say goodbye to the hassle of manual record-keeping and try our attendance extraction tool today!</p>
+            <div class="row">
+              <div class="down-buttons">
+                <br>
+                <div class="main-blue-button-hover">
+                  <a href="{{ url_for('voice_to_text')}}">Voice to text </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="left-image">
+            <img src="{{ url_for('static', filename='assets/images/voice-vec.jpg') }}" alt="Two Girls working together">
           </div>
         </div>
       </div>
@@ -341,7 +362,7 @@ https://templatemo.com/tm-565-onix-digital
 
           <div class="card">
               <div class="content">
-                  <div class="img"><img src="{{ url_for('static', filename='assets/images/domain/shubham.jpg') }}" class="image"></div>
+                  <div class="img"><img src="{{ url_for('static', filename='assets/images/domain/shubam.png') }}" class="image"></div>
                   <h3>Shubham Kanojiya </h3>
                
 
@@ -563,31 +584,33 @@ https://templatemo.com/tm-565-onix-digital
           </div>
         </div>
         <div class="col-lg-5 align-self-center">
-          <form id="contact" action="" method="get">
+          <form id="contact" action="https://formspree.io/f/moqrvnaa" method="POST">
             <div class="row">
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="name" name="name" id="name" placeholder="Name" autocomplete="on" required>
+                  <input type="name" name="name" id="name" placeholder="Name *" autocomplete="on" required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="surname" name="surname" id="surname" placeholder="Surname" autocomplete="on" required>
+                  <input type="surname" name="surname" id="surname" placeholder="Surname" autocomplete="on" >
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email *" required="">
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <input type="text" name="website" id="website" placeholder="Your message" required="">
+                  <input type="text" name="website" id="website" placeholder="Your message *" required="">
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
                   <button type="submit" id="form-submit" class="main-button">Submit</button>
+                  
+                  <button type="reset" class="main-button">Clear</button>
                 </fieldset>
               </div>
             </div>
@@ -647,12 +670,16 @@ https://templatemo.com/tm-565-onix-digital
         </div>
         <div class="col-lg-3">
           <div class="subscribe-newsletters footer-item">
-            <h4>Contact Us</h4>
-            <p>Get our latest news and ideas to your inbox</p>
-            <form action="#" method="get">
-              <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email" required="">
-              <button type="submit" id="form-submit" class="main-button "><i class="fa fa-paper-plane-o"></i></button>
-            </form>
+            <div class="community footer-item">
+              <h4>Problem Dimensions</h4>
+              <ul>
+                <li><a href="#">Summary of the meeting</a></li>
+                <li><a href="#">Duration of the meeting</a></li>
+                <li><a href="#">Total active attendees in the meet</a></li>
+                <li><a href="#">Convert speech to text</a></li>
+                <li><a href="#">Highlight important keywords</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-lg-12">
@@ -675,6 +702,8 @@ https://templatemo.com/tm-565-onix-digital
  <script src="{{ url_for('static', filename='assets/js/imagesloaded.js') }}"></script>
  <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
  <script src="{{ url_for('static', filename='assets/js/top.js') }}"></script>
+ <script src="{{ url_for('static', filename='assets/js/scroll.js') }}"></script>
+
 
 
   <script>
