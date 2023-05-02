@@ -11,7 +11,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        <title>Mastek Stm 24</title>
+        <title>SummAIrizer</title>
 
         <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -66,16 +66,16 @@
                 Upload the transcript file 
             </h2>
             <h3>
-                in .docx , .pdf , .vtt , .txt
+                in .vtt format
             </h3>
             <form action="{{ url_for('attendees_result')}}" method="POST" enctype = "multipart/form-data">
                 <label for="file-upload" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> Custom Upload
                 </label>
-                <input id="file-upload" type="file" name="myfile" accept=".vtt" required onchange="validateFile(this)" />
+                <input id="file-upload" type="file" name="myfile" required onchange="validateFile(this)"/>
                 <p id="selectedfile" style="font-size: 18px;"></p>
                 <div style="border-radius: 0;" class="main-blue-button-hover">
-                    <input type="submit" class="button-65" onclick="showtext()" />
+                    <input type="submit" class="button-65" />
                 </div>
             </form>          
         </div>
